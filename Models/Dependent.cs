@@ -11,7 +11,7 @@ namespace EmpSys.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
-        public int EmployerID { get; set; }
+        public int EmployeeID { get; set; }
         public string name { get; set; }
         public string cpf { get; set; }
         public DateTime dateBirth { get; set; }
