@@ -30,7 +30,7 @@ namespace EmpSys
                 return NotFound();
             }
 
-            Area = await _context.Areas.FirstOrDefaultAsync(m => m.ID == id);
+            Area = await _context.Areas.FindAsync(id);
 
             if (Area == null)
             {
@@ -41,37 +41,23 @@ namespace EmpSys
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (!ModelState.IsValid)
+            var areaToUpdate = await _context.Areas.FindAsync(id);
+
+            if (areaToUpdate == null)
             {
-                return Page();
+                return NotFound();
             }
 
-            _context.Attach(Area).State = EntityState.Modified;
-
-            try
+            if (await TryUpdateModelAsync<Area>(areaToUpdate, "area", a => a.name))
             {
                 await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AreaExists(Area.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            return Page();
 
-            return RedirectToPage("./Index");
         }
-
-        private bool AreaExists(int id)
-        {
-            return _context.Areas.Any(e => e.ID == id);
-        }
+    
     }
 }

@@ -25,7 +25,7 @@ namespace EmpSys
         }
 
         [BindProperty]
-        public Area Area { get; set; }
+        public AreaVM AreaVM { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -35,11 +35,11 @@ namespace EmpSys
             {
                 return Page();
             }
-
-            _context.Areas.Add(Area);
+            var entry = _context.Add(new Area());
+            entry.CurrentValues.SetValues(AreaVM);
             await _context.SaveChangesAsync();
-
             return RedirectToPage("./Index");
+            
         }
     }
 }

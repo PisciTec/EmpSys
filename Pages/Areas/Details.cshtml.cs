@@ -28,7 +28,10 @@ namespace EmpSys
                 return NotFound();
             }
 
-            Area = await _context.Areas.FirstOrDefaultAsync(m => m.ID == id);
+            Area = await _context.Areas
+                .Include(a => a.Employees)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (Area == null)
             {
