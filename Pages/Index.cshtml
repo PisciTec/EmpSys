@@ -7,11 +7,27 @@
 <div class="row mb-auto">
     <div class="col-md-4">
         <div class="row no-gutters border mb-4">
-            <div class="col p-4 mb-4 ">
-                <p class="card-text">
-                 Espaço mais Amplo para colocar o DashBoard de Funcionários por Área
-                </p>
-            </div>
+            <table>
+                <tr>
+                    <th>
+                        Nome da Área
+                    </th>
+                    <th>
+                        Funcionários
+                    </th>
+                </tr>
+                @foreach (var item in Model.Employees)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AreaID)
+                        </td>
+                        <td>
+                            @item.EmployeeCount
+                        </td>
+                    </tr>
+                }
+            </table>
         </div>
     </div>
 </div>
