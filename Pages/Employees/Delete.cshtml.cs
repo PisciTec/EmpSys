@@ -4,24 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EmpSys.Data;
 using EmpSys.Models;
 
-namespace EmpSys.Pages.Areas
+namespace EmpSys.Pages.Employees
 {
-    public class EditModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly EmpSys.Data.EmpContext _context;
 
-        public EditModel(EmpSys.Data.EmpContext context)
+        public DeleteModel(EmpSys.Data.EmpContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Area Area { get; set; }
+        public Employee Employee { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,34 +29,32 @@ namespace EmpSys.Pages.Areas
                 return NotFound();
             }
 
-            Area = await _context.Areas.FindAsync(id);
+            Employee = await _context.Employees
+                .Include(e => e.Area).FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Area == null)
+            if (Employee == null)
             {
                 return NotFound();
             }
             return Page();
         }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            var areaToUpdate = await _context.Areas.FindAsync(id);
-
-            if (areaToUpdate == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            if (await TryUpdateModelAsync<Area>(areaToUpdate, "area", a => a.name))
-            {
-                await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
-            }
-            return Page();
+            Employee = await _context.Employees.FindAsync(id);
 
+            if (Employee != null)
+            {
+                _context.Employees.Remove(Employee);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
         }
-    
     }
 }

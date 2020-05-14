@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using EmpSys.Data;
 using EmpSys.Models;
 
-namespace EmpSys.Pages.Areas
+namespace EmpSys.Pages.Employees
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace EmpSys.Pages.Areas
             _context = context;
         }
 
-        public Area Area { get; set; }
+        public Employee Employee { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,12 +28,11 @@ namespace EmpSys.Pages.Areas
                 return NotFound();
             }
 
-            Area = await _context.Areas
-                .Include(a => a.Employees)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ID == id);
+            Employee = await _context.Employees
+                .Include(a => a.Dependents)
+                .Include(e => e.Area).FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Area == null)
+            if (Employee == null)
             {
                 return NotFound();
             }

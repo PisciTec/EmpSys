@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using EmpSys.ScriptsExtras;
 using EmpSys.Models;
 
-namespace EmpSys
+namespace EmpSys.Pages.Areas
 {
     public class IndexModel : PageModel
     {

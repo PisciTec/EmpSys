@@ -11,7 +11,6 @@ namespace EmpSys.Data
     {
         public static void Initialize(EmpContext context)
         {
-            context.Database.EnsureCreated();
             //Look for any Areas
             if (context.Areas.Any())
             {
@@ -31,13 +30,13 @@ namespace EmpSys.Data
 
             var employees = new Employee[]
             {
-                new Employee{AreaID=1, name= "Rennan Fulaninho", cpf="123.123.412-12", dateBirth=DateTime.Parse("2018-09-01"), paycheck=312.80f, payment=false, Gender=Gender.M},
-                new Employee{AreaID=1, name= "Senhora Beltrano", cpf="161.151.412-08", dateBirth=DateTime.Parse("2018-09-01"), paycheck=500.12f, payment=false, Gender=Gender.F},
-                new Employee{AreaID=2, name= "Fulano Ciclano", cpf="123.112.412-12", dateBirth=DateTime.Parse("2018-09-01"), paycheck=800.12f, payment=false, Gender=Gender.M},
-                new Employee{AreaID=3, name= "Senhor Dequalquer", cpf="123.111.412-12", dateBirth=DateTime.Parse("2018-09-01"), paycheck=312.12f, payment=false, Gender=Gender.M},
-                new Employee{AreaID=4, name= "Tal DeAlgumLugar", cpf="154.123.412-13", dateBirth=DateTime.Parse("2018-09-01"), paycheck=112.12f, payment=false, Gender=Gender.M},
-                new Employee{AreaID=4, name= "Alguma Graça", cpf="123.123.111-55", dateBirth=DateTime.Parse("2018-09-01"), paycheck=412.12f, payment=false, Gender=Gender.F},
-                new Employee{AreaID=4, name= "Possível Beltrano", cpf="123.123.512-11", dateBirth=DateTime.Parse("2018-09-01"), paycheck=212.12f, payment=false, Gender=Gender.M},
+                new Employee{AreaID=1, name= "Rennan Fulaninho", cpf="123.123.412-12", dateBirth=DateTime.Parse("2018-09-01"), paycheck=312.80m, payment=false, Gender=Gender.M},
+                new Employee{AreaID=1, name= "Senhora Beltrano", cpf="161.151.412-08", dateBirth=DateTime.Parse("2018-09-01"), paycheck=500.12m, payment=false, Gender=Gender.F},
+                new Employee{AreaID=2, name= "Fulano Ciclano", cpf="123.112.412-12", dateBirth=DateTime.Parse("2018-09-01"), paycheck=800.12m, payment=false, Gender=Gender.M},
+                new Employee{AreaID=3, name= "Senhor Dequalquer", cpf="123.111.412-12", dateBirth=DateTime.Parse("2018-09-01"), paycheck=312.12m, payment=false, Gender=Gender.M},
+                new Employee{AreaID=4, name= "Tal DeAlgumLugar", cpf="154.123.412-13", dateBirth=DateTime.Parse("2018-09-01"), paycheck=112.12m, payment=false, Gender=Gender.M},
+                new Employee{AreaID=4, name= "Alguma Graça", cpf="123.123.111-55", dateBirth=DateTime.Parse("2018-09-01"), paycheck=412.12m, payment=false, Gender=Gender.F},
+                new Employee{AreaID=4, name= "Possível Beltrano", cpf="123.123.512-11", dateBirth=DateTime.Parse("2018-09-01"), paycheck=212.12m, payment=false, Gender=Gender.M},
             };
             context.Employees.AddRange(employees);
             context.SaveChanges();

@@ -22,7 +22,7 @@ namespace EmpSys.Pages
             _logger = logger;
             _context = context;
         }
-
+        public Area Area { get; set; }
         public IList<EmployeeGroup> Employees { get; set; }
         public async Task OnGetAsync()
         {

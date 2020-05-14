@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using EmpSys.Models;
 
-namespace EmpSys
+namespace EmpSys.Pages.Areas
 {
     public class DeleteModel : PageModel
     {

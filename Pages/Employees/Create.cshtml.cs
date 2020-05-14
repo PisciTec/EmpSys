@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using EmpSys.Data;
 using EmpSys.Models;
 
-namespace EmpSys.Pages.Areas
+namespace EmpSys.Pages.Employees
 {
     public class CreateModel : PageModel
     {
@@ -21,25 +21,26 @@ namespace EmpSys.Pages.Areas
 
         public IActionResult OnGet()
         {
+        ViewData["AreaID"] = new SelectList(_context.Areas, "ID", "ID");
             return Page();
         }
 
         [BindProperty]
-        public AreaVM AreaVM { get; set; }
+        public Employee Employee { get; set; }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            var entry = _context.Add(new Area());
-            entry.CurrentValues.SetValues(AreaVM);
+
+            _context.Employees.Add(Employee);
             await _context.SaveChangesAsync();
+
             return RedirectToPage("./Index");
-            
         }
     }
 }

@@ -8,6 +8,7 @@ namespace EmpSys.Models.DashboardViewsModels
     public class EmployeeGroup
     {
         public int AreaID { get; set; }
+        public int AreaName { get; set; }
         public int EmployeeCount { get; set; }
     }
 }
