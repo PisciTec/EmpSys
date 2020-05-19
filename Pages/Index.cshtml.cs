@@ -27,10 +27,10 @@ namespace EmpSys.Pages
         public async Task OnGetAsync()
         {
             IQueryable<EmployeeGroup> data = from employee in _context.Employees
-                                         group employee by employee.AreaID into areaGroup
+                                         group employee by employee.Area.name into areaGroup
                                          select new EmployeeGroup()
                                          {
-                                             AreaID = areaGroup.Key,
+                                             AreaName = areaGroup.Key,
                                              EmployeeCount = areaGroup.Count()
                                          };
             Employees = await data.AsNoTracking().ToListAsync();

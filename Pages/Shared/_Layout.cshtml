@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - Employee System</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/c3-0.7.15/c3-0.7.15/c3.css" />
 </head>
 <body>
     <header>
@@ -49,9 +50,10 @@
             &copy; 2020 - Employee System - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
-
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/c3-0.7.15/c3-0.7.15/c3.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)

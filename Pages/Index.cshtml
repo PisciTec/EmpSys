@@ -7,7 +7,7 @@
 <div class="row mb-auto">
     <div class="col-md-4">
         <div class="row no-gutters border mb-4">
-            <table>
+            <table id="table_chart">
                 <tr>
                     <th>
                         Nome da Área
@@ -18,9 +18,9 @@
                 </tr>
                 @foreach (var item in Model.Employees)
                 {
-                    <tr>
+                    <tr data-area="@Html.DisplayFor(modelItem => item.AreaName)" data-count="@item.EmployeeCount">
                         <td>
-                            @Html.DisplayFor(modelItem => item.AreaID)
+                            @Html.DisplayFor(modelItem => item.AreaName)
                         </td>
                         <td>
                             @item.EmployeeCount
@@ -32,7 +32,7 @@
     </div>
 </div>
 <div class="row mb-auto">
-    <div class="col-md-12">
-        <h1>Aqui ficará a tabela com a listagem de Áreas</h1>
+    <div id="chart" class="col-md-12">
+        
     </div>
 </div>
